@@ -6,8 +6,8 @@ int main(void) {
     memset(input_buffer, 0, sizeof(input_buffer));
     pid_t child_pid = fork();
     if (child_pid == 0) { // a way that child reconize itself
-        prctl(PR_SET_PDEATHSIG, SIGKILL);  //if parent process stops or crash kernel sends a sigkill to child process 
-        ptrace(PTRACE_TRACEME, 0, NULL, NULL);  //child process here gives the power to parent process to watch it right and supervise it
+        prctl(1, 1);  //if parent process stops or crash kernel sends a sigkill to child process 
+        ptrace(0, 0, 0, 0);  //child process here gives the power to parent process to watch it right and supervise it
         puts("Give me some shellcode, k");
         gets(input_buffer); 
     } else {
