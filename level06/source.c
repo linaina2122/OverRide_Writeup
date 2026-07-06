@@ -1,8 +1,9 @@
 int auth(char *input, unsigned int expected_hash) {
-    input[strcspn(input, "\n")] = '\0';
+    input[strcspn(input, "\n")] = '\0'; //finds \n in the string and remplace it with \0
     int len = strnlen(input, 32);
-    if (len <= 5) return 1;
-    if (ptrace(0, 0, 0, 0) == -1) {
+    if (len < 6) 
+        return 1;
+    if (ptrace(0, 0, 1, 0) == -1) { //supervise a program 
         puts("..."); puts("..."); puts("...");
         return 1;
     }
