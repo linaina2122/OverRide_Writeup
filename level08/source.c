@@ -1,3 +1,6 @@
+
+
+
 void log_wrapper(FILE *log_file, const char *prefix, const char *filename) {
     char log_buffer[264];
     size_t newline_pos;
@@ -56,6 +59,5 @@ int main(int argc, char **argv) {
     log_wrapper(log_stream, "Finished back up ", argv[1]);
     fclose(src_stream);
     close(dest_fd);
-
     return 0;
 }
