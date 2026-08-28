@@ -119,16 +119,3 @@ The semicolon tells the terminal to execute the commands sequentially inside a s
 1. First, `python` writes the exploit payload directly into the buffer to trigger the vulnerability.
 2. Second, the moment Python exits, `cat -` takes over the stream.
 3. The hyphen (`-`) specifies that `cat` should read directly from your live keyboard terminal context. This links your active terminal interface directly into the input pipe of the target program. When the shell spawns, the pipe remains open and interactive, allowing you to run commands like `cat /home/users/level05/.pass` to retrieve the flag.
-
-
-
-
-
-
-
-
-
-
-
-
-

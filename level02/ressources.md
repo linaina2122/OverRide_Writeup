@@ -45,11 +45,13 @@ Scanning the tokens, most of them are either:
 Sandwiched between two of those repeating echo blocks (right after the first block ends, and right before the second one begins) sit **5 tokens that don't fit the address or echo pattern** — these are the password:
 
 ```
+
 START →  0x756e505234376848
          0x45414a3561733951
          0x377a7143574e6758
          0x354a35686e475873
 END   →  0x48336750664b394d
+
 ```
 
 Five 8-byte (64-bit) words = 40 bytes total, which lines up with a 40-character password.
@@ -76,28 +78,5 @@ Hh74RPnuQ9sa5JAEXgNWCqz7sXGnh5J5M9KfPg3H
 
 - `%x` on a 32-bit read can silently drop leading zero nibbles, which shifts the byte alignment of everything that follows it once you concatenate outputs together — that's what caused garbled results in an earlier attempt with this challenge.
 - `%p` on a 64-bit target prints the full pointer-width value (`0x` + up to 16 hex digits) consistently, so each token maps cleanly to one full 8-byte stack word with no ambiguity about where one value ends and the next begins.
-
-## Result — Logging In With the Recovered Password
-
-Using `admin` as the username and the recovered string as the password successfully authenticates:
-
-```
-level02@OverRide:~$ ./level02
-===== [ Secure Access System v1.0 ] =====
-/***************************************\
-| You must login to access this system. |
-\**************************************/
---[ Username: admin]
---[ Password: Hh74RPnuQ9sa5JAEXgNWCqz7sXGnh5J5M9KfPg3H]
-*****************************************
-Greetings, admin!
-```
-
-From there, reading the next level's password file confirms access was granted:
-
-```
-$ cat /home/users/level03/.pass
-Hh74RPnuQ9sa5JAEXgNWCqz7sXGnh5J5M9KfPg3H
-```
 
 This confirms the leaked password reconstructed via the `%p` → little-endian → ASCII method was correct, and completes level02.

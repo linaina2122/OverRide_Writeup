@@ -98,7 +98,4 @@ If you can find a way to *write* to the GOT (say, via a format string bug or an 
 
 **Why it matters:** this single bug class can give you both a *read* primitive (leak addresses) and a *write* primitive (overwrite anything, including the GOT). It's one of the most powerful and most subtle bugs you'll deal with.
 
----
-
-
 
